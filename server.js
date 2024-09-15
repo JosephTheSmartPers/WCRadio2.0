@@ -6,8 +6,7 @@ const app = express();
 const port = 3000;
 
 // MongoDB connection string
-const uri =
-  "mongodb+srv://barnibot2:hmikOkFlCPRrNfdV@cluster0.jeiy1.mongodb.net/test"; // Database name is 'test'
+const uri = process.env.URI; // Database name is 'test'
 
 // Middleware
 app.use(bodyParser.json());
