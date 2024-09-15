@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Song Player</title>
+
+    <script>
+      async function playSong(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const songName = document.getElementById("song-input").value;
+
+        const response = await fetch("/play", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ song: songName }),
+        });
+
+        const result = await response.json();
+        alert(result.message);
+      }
+    </script>
+    <style>
+      @font-face {
+        font-family: "Comic-Sans";
+        src: url("./Comic\ Sans\ MS.ttf");
+      }
+      @font-face {
+        font-family: "Proto-Mono";
+        src: url("./Proto\ Mono\ Regular.ttf");
+      }
+    </style>
+  </head>
+  <body
+    style="
+      background-color: #020b15;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    "
+  >
+    <h1
+      style="
+        font-family: Comic-Sans;
+        font-size: 40px;
+        color: white;
+        margin-bottom: 0px;
+        margin-top: 90px;
+      "
+    >
+      WCRádió
+    </h1>
+    <h1
+      style="
+        margin-top: -20px;
+        font-family: Proto-Mono;
+        background: linear-gradient(to right, #22c1c3, #fdbb2d);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 50px;
+      "
+    >
+      REVAMPED
+    </h1>
+    <form
+      onsubmit="playSong(event)"
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      "
+    >
+      <input
+        type="text"
+        id="song-input"
+        placeholder="a dalod címe vagy hivatkozása"
+        required=""
+        data-np-intersection-state="visible"
+        style="
+          text-align: center;
+          background-color: #333333;
+          box-shadow: none;
+          border: none;
+          outline: none;
+          font-family: Proto-Mono;
+          width: 95svw;
+          height: 43px;
+          border-radius: 9px;
+          font-size: 15px;
+          color: white;
+        "
+      />
+      <button
+        type="submit"
+        style="
+          background: linear-gradient(to right, #22c1c3, #fdbb2d);
+          outline: none;
+          box-shadow: none;
+          border: none;
+          margin-top: 35px;
+          width: 77px;
+          height: 77px;
+          border-radius: 20px;
+        "
+      >
+        <svg
+          width="35"
+          height="47"
+          viewBox="0 0 35 47"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M34.3627 22.2864L2.27937 0.254814C1.83167 -0.050691 1.25417 -0.0844722 0.775833 0.169626C0.298958 0.423723 0 0.923106 0 1.46802V45.5312C0 46.0761 0.29896 46.5755 0.777293 46.8296C0.99021 46.9442 1.225 47 1.45833 47C1.74563 47 2.03292 46.9133 2.27937 46.7444L34.3627 24.7128C34.7608 24.4396 35 23.9858 35 23.4996C35 23.0135 34.7608 22.5596 34.3627 22.2864ZM2.91667 42.7508V4.24841L30.9531 23.4996L2.91667 42.7508Z"
+            fill="white"
+          />
+          <path
+            d="M2.91667 42.7508V4.24841L30.9531 23.4996L2.91667 42.7508Z"
+            fill="white"
+          />
+        </svg>
+      </button>
+    </form>
+
+    <nordpass-passkeys></nordpass-passkeys>
+  </body>
+</html>

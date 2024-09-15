@@ -1,16 +1,21 @@
 {
   "name": "wcradio-revanced",
   "version": "1.0.0",
-  "description": "",
   "main": "audioServer.js",
   "scripts": {
-    "test": "node audioServer.js"
+    "test": "node audioServer.js",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.0",
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
+    "mongodb": "^6.9.0",
     "path": "^0.12.7"
-  }
+  },
+  "keywords": [],
+  "description": ""
 }

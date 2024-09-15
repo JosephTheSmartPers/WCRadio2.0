@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Song Queue</title>
+  </head>
+  <body>
+    <h1>Song Request</h1>
+    <form id="songForm">
+      <label for="songInput">Enter Song Name or URL:</label>
+      <input type="text" id="songInput" name="song" required />
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("songForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const song = document.getElementById("songInput").value;
+
+          try {
+            // Send the song request to the server
+            const response = await fetch("/add-song", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ song }),
+            });
+
+            if (response.ok) {
+              alert("Song added to the queue!");
+            } else {
+              const error = await response.json();
+              alert(`Error: ${error.message}`);
+            }
+          } catch (error) {
+            alert("Network error, please try again.");
+          }
+        });
+    </script>
+  </body>
+</html>
