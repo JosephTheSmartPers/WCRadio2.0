@@ -27,7 +27,10 @@ app.post("/play", async (req, res) => {
   try {
     const result = await db
       .collection("songs")
-      .updateOne({ sid: "1" }, { $set: { song: song } });
+      .updateOne(
+        { sid: "1" },
+        { $set: { song: song, number: Date.now().toString() } }
+      );
 
     if (result.matchedCount === 0) {
       res.json({ message: "Valami hiba történt, sajnáljuk!" });
