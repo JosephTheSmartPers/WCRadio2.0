@@ -23,6 +23,22 @@
         const result = await response.json();
         alert(result.message);
       }
+      async function interactWithSong(interaction) {
+        event.preventDefault(); // Prevent default form submission
+
+        const songName = interaction;
+
+        const response = await fetch("/play", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ song: songName }),
+        });
+
+        const result = await response.json();
+        alert(result.message);
+      }
     </script>
     <style>
       @font-face {
@@ -125,7 +141,96 @@
         </svg>
       </button>
     </form>
-
+    <div
+      style="
+        position: fixed;
+        bottom: 10svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        gap: 20px;
+      "
+    >
+      <button
+        onclick="interactWithSong('toggleStop')"
+        style="
+          background: linear-gradient(to right, #22c1c3, #fdbb2d);
+          outline: none;
+          box-shadow: none;
+          border: none;
+          margin-top: 35px;
+          width: 60px;
+          height: 60px;
+          border-radius: 20px;
+        "
+      >
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path d="M7 1H2V15H7V1Z" fill="#fff"></path>
+            <path d="M14 1H9V15H14V1Z" fill="#fff"></path>
+          </g>
+        </svg>
+      </button>
+      <button
+        onclick="interactWithSong('skip')"
+        style="
+          background: linear-gradient(to right, #22c1c3, #fdbb2d);
+          outline: none;
+          box-shadow: none;
+          border: none;
+          margin-top: 35px;
+          width: 60px;
+          height: 60px;
+          border-radius: 20px;
+        "
+      >
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path d="M4 15H2V1H4L10 7V1H14V15H10V9L4 15Z" fill="#fff"></path>
+          </g>
+        </svg>
+      </button>
+      <button
+        onclick="interactWithSong('toggleStart')"
+        style="
+          background: linear-gradient(to right, #22c1c3, #fdbb2d);
+          outline: none;
+          box-shadow: none;
+          border: none;
+          margin-top: 35px;
+          width: 60px;
+          height: 60px;
+          border-radius: 20px;
+        "
+      >
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path d="M1 14H3L9 8L3 2H1V14Z" fill="#fff"></path>
+            <path d="M15 2H13V14H15V2Z" fill="#fff"></path>
+            <path d="M9 2H11V14H9V2Z" fill="#fff"></path>
+          </g>
+        </svg>
+      </button>
+    </div>
     <nordpass-passkeys></nordpass-passkeys>
   </body>
 </html>
